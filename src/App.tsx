@@ -58,17 +58,16 @@ function App() {
 
   const handleLayerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const layerId = e.target.value;
-    if (layerId && !selectedLayers.includes(layerId)) {
-      selectedLayers.push(layerId)
-      setSelectedLayers(selectedLayers)
+    if (layerId) {
+      setSelectedLayers((prev) => (prev.includes(layerId) ? prev : [...prev, layerId]))
     }
     e.target.value = ""; // Reset dropdown
   }
 
   const handleSkillSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const skillId = e.target.value;
-    if (skillId && !selectedSkills.includes(skillId)) {
-      setSelectedSkills([...selectedSkills, skillId]);
+    if (skillId) {
+      setSelectedSkills((prev) => (prev.includes(skillId) ? prev : [...prev, skillId]))
     }
     e.target.value = ""; // Reset dropdown
   }
