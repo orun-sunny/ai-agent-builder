@@ -47,7 +47,6 @@ function App() {
     if (layerId) {
       setSelectedLayers((prev) => (prev.includes(layerId) ? prev : [...prev, layerId]))
     }
-    e.target.value = ""; // Reset dropdown
   }
 
   const handleSkillSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -55,7 +54,6 @@ function App() {
     if (skillId) {
       setSelectedSkills((prev) => (prev.includes(skillId) ? prev : [...prev, skillId]))
     }
-    e.target.value = ""; // Reset dropdown
   }
 
   const handleSaveAgent = () => {
@@ -142,7 +140,7 @@ function App() {
                   <select
                     id="skill-select"
                     onChange={handleSkillSelect}
-                    defaultValue=""
+                    value=""
                     style={{ width: '100%', padding: '0.5rem' }}
                   >
                     <option value="" disabled>-- Select a Skill to Add --</option>
@@ -157,7 +155,7 @@ function App() {
                   <select
                     id="layer-select"
                     onChange={handleLayerSelect}
-                    defaultValue=""
+                    value=""
                     style={{ width: '100%', padding: '0.5rem' }}
                   >
                     <option value="" disabled>-- Select a Layer to Add --</option>
