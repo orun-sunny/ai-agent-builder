@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react'
 import type { AgentData, Skill, Layer, AgentProfile } from '../hooks/useAgentData'
 import { useDroppable, useDraggable } from '@dnd-kit/core'
 
-interface PaletteProps {
+interface ConfigBoxProps {
 	data: AgentData
 }
 
@@ -18,13 +18,13 @@ function DraggableItem({ id, label, type }: { id: string; label: string; type: '
 	)
 }
 
-export const Palette = memo(function Palette({ data }: PaletteProps) {
+export const ConfigBox = memo(function ConfigBox({ data }: ConfigBoxProps) {
 	const profiles = useMemo<AgentProfile[]>(() => data.agentProfiles, [data])
 	const skills = useMemo<Skill[]>(() => data.skills, [data])
 	const layers = useMemo<Layer[]>(() => data.layers, [data])
 
-	// A passive droppable to show palette area
-	const { setNodeRef } = useDroppable({ id: 'palette' })
+	// A passive droppable to show configbox area
+	const { setNodeRef } = useDroppable({ id: 'configbox' })
 
 	return (
 		<div ref={setNodeRef} style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16 }}>

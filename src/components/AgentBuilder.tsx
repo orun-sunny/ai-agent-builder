@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useAgentData } from '../hooks/useAgentData'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import type { SavedAgent } from '../types'
-import { Palette } from './Palette'
+import { ConfigBox } from './ConfigBox'
 import { SelectedList } from './SelectedList'
 import { ProviderSelect } from './ProviderSelect'
 import { SaveAgentForm } from './SaveAgentForm'
@@ -84,7 +84,7 @@ export function AgentBuilder() {
       <main style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: '1.5rem', flex: 1 }}>
         <section style={{ borderRight: '1px solid #eee', paddingRight: '1rem' }}>
           {data ? (
-            <Palette
+            <ConfigBox
               profiles={data.agentProfiles}
               skills={data.skills}
               layers={data.layers}
