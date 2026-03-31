@@ -1,4 +1,4 @@
-import { CSSProperties, memo } from 'react'
+import { type CSSProperties, memo } from 'react'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
