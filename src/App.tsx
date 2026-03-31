@@ -1,44 +1,9 @@
 import { useState, useEffect } from 'react'
-
-// Define the types based on data.json
-interface AgentProfile {
-  id: string
-  name: string
-  description: string
-}
-
-interface Skill {
-  id: string
-  name: string
-  category: string
-  description: string
-}
-
-interface Layer {
-  id: string
-  name: string
-  type: string
-  description: string
-}
-
-interface AgentData {
-  agentProfiles: AgentProfile[]
-  skills: Skill[]
-  layers: Layer[]
-}
-
-interface SavedAgent {
-  name: string
-  profileId: string
-  skillIds: string[]
-  layerIds: string[]
-  provider?: string
-}
+import type { SavedAgent } from './types'
+import { useAgentData } from './hooks/useAgentData'
 
 function App() {
-  const [data, setData] = useState<AgentData | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { data, loading, error, reload } = useAgentData()
 
   // Selection states
   const [selectedProfile, setSelectedProfile] = useState<string>('')
@@ -89,32 +54,7 @@ function App() {
     return () => clearInterval(analyticsInterval)
   }, [])
 
-  const fetchAPI = async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      // Simulate network delay and randomness (1 to 3 seconds)
-      const delay = Math.floor(Math.random() * 2000) + 1000
-      await new Promise((resolve) => setTimeout(resolve, delay))
 
-      const response = await fetch('/data.json')
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      const jsonData: AgentData = await response.json()
-      setData(jsonData)
-    } catch (err: any) {
-      console.error('Error fetching data:', err)
-      setError(err.message || 'Failed to fetch agent data')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Fetch data on initial component mount
-  useEffect(() => {
-    fetchAPI()
-  }, [])
 
   const handleLayerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const layerId = e.target.value;
@@ -123,8 +63,6 @@ function App() {
       setSelectedLayers(selectedLayers)
     }
     e.target.value = ""; // Reset dropdown
-
-    fetchAPI()
   }
 
   const handleSkillSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -133,8 +71,6 @@ function App() {
       setSelectedSkills([...selectedSkills, skillId]);
     }
     e.target.value = ""; // Reset dropdown
-
-    fetchAPI()
   }
 
   const handleSaveAgent = () => {
@@ -172,7 +108,7 @@ function App() {
         <h1>AI Agent Builder</h1>
         <p>Design your custom AI personality and capability set.</p>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <button onClick={fetchAPI} disabled={loading}>
+          <button onClick={reload} disabled={loading}>
             {loading ? 'Fetching Configuration...' : 'Reload Configuration Data'}
           </button>
           <span style={{ fontSize: '0.9rem', color: '#666' }}>
@@ -206,7 +142,6 @@ function App() {
                     value={selectedProfile}
                     onChange={(e) => {
                       setSelectedProfile(e.target.value)
-                      fetchAPI()
                     }}
                     style={{ width: '100%', padding: '0.5rem' }}
                   >
