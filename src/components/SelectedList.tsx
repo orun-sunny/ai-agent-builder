@@ -33,7 +33,7 @@ interface SelectedListProps {
 export const SelectedList = memo(function SelectedList({ title, items, onRemove }: SelectedListProps) {
 	return (
 		<section>
-			<h3 style={{ marginTop: 0 }}>{title}</h3>
+			<h3 style={{ marginTop: 2 }}>{title}</h3>
 			{items.length === 0 ? (
 				<p style={{ color: '#888' }}>None selected.</p>
 			) : (

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { useDroppable } from '@dnd-kit/core'
 
 interface DropZoneProps {

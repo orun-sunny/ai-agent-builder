@@ -30,7 +30,7 @@ function App() {
   // DnD sensors
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
 
-  // Derived lookup maps to avoid repeated .find in render
+  //  to avoid repeated .find in render
   const profilesById = useMemo(() => {
     const map = new Map<string, string>()
     if (data) data.agentProfiles.forEach(p => map.set(p.id, p.name))
