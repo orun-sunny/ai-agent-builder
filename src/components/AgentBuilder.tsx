@@ -146,7 +146,7 @@ export function AgentBuilder() {
               Clear All
             </button>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '1rem'}}>
             {savedAgents.map((agent, index) => (
               <div key={`${agent.name}-${index}`} style={{ padding: '1rem', background: 'white', borderRadius: '8px', border: '1px solid #e3e8ef', minWidth: '240px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
                 <h3 style={{ marginTop: 0 }}>{agent.name}</h3>

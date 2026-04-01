@@ -38,7 +38,7 @@ export const SelectedList = memo(function SelectedList({ title, items, onRemove 
 				<p style={{ color: '#888' }}>None selected.</p>
 			) : (
 				<SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
-					<div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+					<div style={{ display: 'flex', gap: 8 }}>
 						{items.map(it => (
 							<SortableChip key={it.id} id={it.id} label={it.label} onRemove={onRemove} />
 						))}
